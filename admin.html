@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — LinkHub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+  <header class="site-header">
+    <a class="brand" href="index.html">Link<span>Hub</span><small class="admin-label">ADMIN</small></a>
+    <nav class="main-nav"><a href="index.html">View website ↗</a></nav>
+  </header>
+
+  <main class="admin-main">
+    <section id="login-panel" class="login-card">
+      <p class="eyebrow">PRIVATE AREA</p>
+      <h1>Admin sign in</h1>
+      <p class="muted">Sign in using the email and password you added in Firebase Authentication.</p>
+      <form id="login-form" class="stack-form">
+        <label>Email address<input id="login-email" type="email" autocomplete="username" required></label>
+        <label>Password<input id="login-password" type="password" autocomplete="current-password" required></label>
+        <button class="button button-dark" type="submit">Sign in</button>
+        <p id="login-message" class="form-message" role="status"></p>
+      </form>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="admin-title-row">
+        <div><p class="eyebrow">LINKHUB CONTENT</p><h1>Manage articles</h1><p class="muted">Create a draft, preview it, or publish it when it is ready.</p></div>
+        <button id="sign-out" class="button button-light" type="button">Sign out</button>
+      </div>
+      <div class="admin-layout">
+        <section class="editor-card">
+          <div class="section-heading"><h2 id="editor-heading">Write an article</h2><button id="reset-editor" class="text-button" type="button">Clear form</button></div>
+          <form id="post-form" class="stack-form">
+            <input id="post-id" type="hidden">
+            <label>Article title<input id="post-title" maxlength="160" required placeholder="Enter a clear article title"></label>
+            <div class="form-two">
+              <label>Category<select id="post-category" required>
+                <option>Technology</option><option>Mystery</option><option>Horror</option><option>True Stories</option><option>Science</option><option>History</option><option>Interesting Facts</option><option>Other</option>
+              </select></label>
+              <label>Status<select id="post-status"><option value="draft">Draft</option><option value="published">Published</option></select></label>
+            </div>
+            <label>Cover image URL <input id="post-image" type="url" placeholder="https://example.com/image.jpg"></label>
+            <p class="field-hint">Use an image URL that you have permission to publish. Image upload storage is not included in this version.</p>
+            <label>Short excerpt<textarea id="post-excerpt" rows="3" maxlength="300" placeholder="A short summary shown on the home page"></textarea></label>
+            <label>Article content</label>
+            <div class="editor-toolbar" role="toolbar" aria-label="Text formatting">
+              <button type="button" data-command="formatBlock" data-value="h2">Heading</button>
+              <button type="button" data-command="formatBlock" data-value="h3">Subheading</button>
+              <button type="button" data-command="bold"><strong>B</strong></button>
+              <button type="button" data-command="italic"><em>I</em></button>
+              <button type="button" data-command="insertUnorderedList">• List</button>
+              <button type="button" data-command="insertOrderedList">1. List</button>
+              <button type="button" id="insert-link">Link</button>
+              <button type="button" id="insert-image">Image URL</button>
+              <button type="button" data-command="removeFormat">Clear format</button>
+            </div>
+            <div id="post-content" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Start writing your article here…" aria-label="Article content"></div>
+            <div class="form-actions"><button class="button button-dark" type="submit">Save article</button><button class="button button-light" id="preview-post" type="button">Preview</button></div>
+            <p id="post-message" class="form-message" role="status"></p>
+          </form>
+        </section>
+        <aside class="article-list-card">
+          <div class="section-heading"><h2>Your articles</h2><span id="post-count" class="count-pill">0</span></div>
+          <div id="admin-post-list" class="admin-post-list"><p class="muted">Loading your articles…</p></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="LinkHub — discover technology, mysteries, horror, true stories, science and history.">
+  <meta name="theme-color" content="#101512">
+  <title>LinkHub — Stories Worth Exploring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="home-page linkhub-travel-style">
+  <div class="site-shell">
+    <header class="site-header">
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <a class="site-brand" href="index.html"><span class="brand-mark">L</span><span>Link<span
+            class="brand-light">Hub</span><small>STORIES WORTH EXPLORING</small></span></a>
+      <nav class="primary-nav" id="primary-nav"><a href="#blog" class="nav-active">Blog</a><a href="#blog"
+          data-nav-category="Technology">Technology</a><a href="#blog" data-nav-category="Mystery">Mystery</a><a
+          href="#blog" data-nav-category="True Stories">True Stories</a><a href="#blog"
+          data-nav-category="Science">Science</a><a href="#blog" data-nav-category="History">History</a></nav>
+      <div class="header-right"><label class="search-box"><input id="site-search" type="search"
+            placeholder="Search articles…" aria-label="Search articles"><span>⌕</span></label><a class="admin-link"
+          href="admin.html">Admin ↗</a></div>
+    </header>
+
+    <main>
+      <section class="hero-feature" id="featured" aria-label="Featured story">
+        <div class="hero-overlay"></div>
+        <div class="hero-content"><span class="hero-eyebrow"><i></i> THE LINKHUB JOURNAL</span>
+          <h1>Curiosity takes<br><em>you everywhere.</em></h1>
+          <p>Fresh perspectives, fascinating discoveries, and stories that stay with you.</p>
+          <a class="hero-cta" href="#blog">Explore the stories <span>↗</span></a>
+        </div>
+        <div class="hero-bottom"><span>IDEAS • PEOPLE • DISCOVERIES</span><span>SCROLL TO EXPLORE ↓</span></div>
+      </section>
+
+      <section class="blog-section" id="blog">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE LATEST FROM LINKHUB</p>
+            <h2>Stories to get lost in<span>.</span></h2>
+            <p class="section-subtitle">A little something for every curious mind.</p>
+          </div>
+          <div class="sort-wrap"><label for="sort-posts">Sort by</label><select id="sort-posts">
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="title">Title A–Z</option>
+            </select></div>
+        </div>
+        <div class="category-bar" id="category-bar"><button class="category-chip selected" data-category="All">All
+            stories</button><button class="category-chip" data-category="Technology">Technology</button><button
+            class="category-chip" data-category="Mystery">Mystery</button><button class="category-chip"
+            data-category="Horror">Horror</button><button class="category-chip" data-category="True Stories">True
+            Stories</button><button class="category-chip" data-category="Science">Science</button><button
+            class="category-chip" data-category="History">History</button></div>
+        <div class="results-line"><span id="results-count">Discover something new</span><button id="clear-filter"
+            class="clear-filter hidden">Clear filters ×</button></div>
+        <div id="posts-grid" class="article-grid">
+          <div class="loading-card"><span class="loading-dot"></span> Loading stories…</div>
+        </div>
+        <p id="empty-state" class="empty-state hidden">No articles found. Try another topic or search term.</p>
+        <div class="pagination" id="pagination" aria-label="Article pages"></div>
+      </section>
+
+      <section class="discover-band" id="topics-list">
+        <div class="discover-copy">
+          <p class="eyebrow">FOLLOW YOUR CURIOSITY</p>
+          <h2>There’s always<br>more to discover.</h2>
+          <p>From the unexplained to the everyday extraordinary, find your next read on LinkHub.</p><a href="#blog"
+            class="discover-link">Browse all stories <span>↗</span></a>
+        </div>
+        <div class="discover-topics"><a href="#blog"
+            data-topic="Technology"><span>01</span><strong>Technology</strong><small>Tools, trends & the future
+              ↗</small></a><a href="#blog" data-topic="Mystery"><span>02</span><strong>Mystery</strong><small>Questions
+              without easy answers ↗</small></a><a href="#blog" data-topic="True Stories"><span>03</span><strong>True
+              Stories</strong><small>Real people, real moments ↗</small></a><a href="#blog"
+            data-topic="Science"><span>04</span><strong>Science & History</strong><small>Understand our world
+              ↗</small></a></div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-main"><a class="site-brand footer-brand" href="index.html"><span
+            class="brand-mark">L</span><span>Link<span class="brand-light">Hub</span><small>STORIES WORTH
+              EXPLORING</small></span></a>
+        <p>A home for curious minds.<br>Explore ideas, stories, and discoveries.</p>
+        <div class="footer-links"><strong>Explore</strong><a href="#blog">Latest stories</a><a
+            href="#topics-list">Topics</a><a href="terms.html">Terms</a>
+            <a href="privacypolicy.html">privacy policy</a>
+          </div>
+        <div class="footer-links"><strong>LinkHub</strong><a href="blog.html">Read an article</a><a
+            href="mailto:heycoders.anurag@gmail.com">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> LinkHub. All rights reserved.</span><span>Made for
+          curious minds.</span></div>
+    </footer>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
