@@ -1,4 +1,3 @@
-
 const admin = require("firebase-admin");
 
 if (!admin.apps.length) {
@@ -39,11 +38,7 @@ module.exports = async (req, res) => {
       const blog = doc.data();
 
       // Include only published blogs.
-      const isPublished =
-        blog.published === true ||
-        blog.status === "published";
-
-      if (!isPublished || !blog.slug) return;
+      if (!blog.slug) return;
 
       const blogUrl =
         `${BASE_URL}/blog.html?slug=` +
