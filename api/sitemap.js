@@ -26,7 +26,7 @@ function escapeXml(value) {
 module.exports = async (req, res) => {
   try {
     // Change "blogs" if your Firestore collection has another name.
-    const snapshot = await db.collection("postos").get();
+    const snapshot = await db.collection("posts").get();
 
     const urls = [
       `${BASE_URL}/`,
