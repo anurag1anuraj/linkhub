@@ -704,7 +704,7 @@ button {
     }
 
     .menu-toggle {
-        display: block
+        display: block;
     }
 
     .main-nav {
@@ -898,7 +898,7 @@ button {
 }
 
 .header-tools .menu-toggle {
-    display: block;
+    display: block;;
     font-size: 1.25rem;
     padding: 4px 0;
     color: #171717
@@ -2349,7 +2349,7 @@ button {
     }
 
     .menu-toggle {
-        display: block
+        display: block;
     }
 
     .site-brand {
