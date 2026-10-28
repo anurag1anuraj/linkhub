@@ -2453,20 +2453,7 @@ button {
         background: #f2f3ed
     }
 
-    .search-box input {
-        position: absolute;
-        top: 65px;
-        left: 12px;
-        right: 12px;
-        width: calc(100% - 24px);
-        height: 42px;
-        padding: 0 12px;
-        background: #fff;
-        border: 1px solid #e5e6df;
-        border-radius: 5px;
-        display: none;
-        box-shadow: 0 5px 12px #0000000a
-    }
+  
 
     .search-box:focus-within input {
         display: block
