@@ -2445,12 +2445,12 @@ button {
     }
 
     .search-box {
-        width: 35px;
+        width: 155px;
         height: 35px;
-        padding: 0;
+        padding: 2px;
         justify-content: center;
         border: 0;
-        background: #f2f3ed
+        background: #f2f3ed;
     }
 
   
