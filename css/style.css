@@ -704,7 +704,7 @@ button {
     }
 
     .menu-toggle {
-        display: block
+        display: block;
     }
 
     .main-nav {
@@ -2340,7 +2340,7 @@ button {
     }
 
     .menu-toggle {
-        display: block
+        display: block;
     }
 
     .site-brand {
@@ -2469,7 +2469,7 @@ button {
     }
 
     .search-box:focus-within input {
-        display: block
+        display: block;
     }
 
     .search-box span {
