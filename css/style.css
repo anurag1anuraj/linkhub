@@ -704,7 +704,7 @@ button {
     }
 
     .menu-toggle {
-        display: block;
+        display: block
     }
 
     .main-nav {
@@ -1723,6 +1723,15 @@ button {
     color: #65695f
 }
 
+.search-toggle {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    line-height: 1;
+}
+
 .admin-link {
     font-size: .74rem;
     font-weight: 700;
@@ -2340,7 +2349,7 @@ button {
     }
 
     .menu-toggle {
-        display: block;
+        display: block
     }
 
     .site-brand {
@@ -2468,12 +2477,19 @@ button {
         box-shadow: 0 5px 12px #0000000a
     }
 
-    .search-box:focus-within input {
+    .search-box.search-open input {
         display: block;
+        z-index: 20;
     }
 
-    .search-box span {
-        font-size: 1.45rem
+    .search-box .search-toggle {
+        font-size: 1.45rem;
+        width: 35px;
+        height: 35px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .admin-link {
