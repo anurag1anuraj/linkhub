@@ -55,9 +55,34 @@ if (!slug) {
     if (!found) {
       root.innerHTML = '<p class="muted">This article could not be found or is not published.</p>';
     } else {
-      document.title = `${found.title} — LinkHub`;
-      document.querySelector('meta[name="description"]').content = found.excerpt || found.title;
-      const image = found.imageUrl ? `<img class="article-cover" src="${escapeHtml(found.imageUrl)}" alt="${escapeHtml(found.title)}">` : "";
+      const articleTitle = `${found.title || "Article"} — LinkHub`;
+      const description = (found.excerpt || found.title || "Read this story on LinkHub.").replace(/\s+/g, " ").slice(0, 155);
+      const canonicalUrl = `${location.origin}${location.pathname}?slug=${encodeURIComponent(found.slug || slug)}`;
+      document.title = articleTitle;
+      document.querySelector('meta[name="description"]').content = description;
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) canonical.href = canonicalUrl;
+      const setMeta = (selector, value) => { const element = document.querySelector(selector); if (element) element.setAttribute("content", value); };
+      setMeta('meta[property="og:title"]', articleTitle);
+      setMeta('meta[property="og:description"]', description);
+      setMeta('meta[property="og:url"]', canonicalUrl);
+      setMeta('meta[name="twitter:title"]', articleTitle);
+      setMeta('meta[name="twitter:description"]', description);
+      if (found.imageUrl) setMeta('meta[property="og:image"]', found.imageUrl);
+      const structuredData = {
+        "@context": "https://schema.org", "@type": "BlogPosting",
+        "headline": found.title || "LinkHub article", "description": description,
+        "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+        "datePublished": found.createdAt?.toDate ? found.createdAt.toDate().toISOString() : undefined,
+        "dateModified": (found.updatedAt?.toDate ? found.updatedAt.toDate().toISOString() : undefined),
+        "author": { "@type": "Person", "name": found.author || "LinkHub Editorial" },
+        "publisher": { "@type": "Organization", "name": "LinkHub" },
+        "image": found.imageUrl || undefined
+      };
+      let jsonLd = document.querySelector('#article-jsonld');
+      if (!jsonLd) { jsonLd = document.createElement('script'); jsonLd.id = 'article-jsonld'; jsonLd.type = 'application/ld+json'; document.head.appendChild(jsonLd); }
+      jsonLd.textContent = JSON.stringify(structuredData);
+      const image = found.imageUrl ? `<img class="article-cover" src="${escapeHtml(found.imageUrl)}" alt="${escapeHtml(found.title)}" loading="eager">` : "";
       root.innerHTML = `<header class="article-header">
         <div class="post-meta"><span class="category-tag">${escapeHtml(found.category || "Other")}</span><span>${escapeHtml(formatDate(found.createdAt))}</span></div>
         <h1>${escapeHtml(found.title)}</h1>
