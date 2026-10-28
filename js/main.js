@@ -62,19 +62,6 @@ function setCategory(category) {
 document.querySelectorAll("[data-category]").forEach(b => b.addEventListener("click", () => setCategory(b.dataset.category)));
 document.querySelectorAll("[data-nav-category]").forEach(a => a.addEventListener("click", () => setCategory(a.dataset.navCategory)));
 document.querySelectorAll("[data-topic]").forEach(a => a.addEventListener("click", () => setCategory(a.dataset.topic)));
-const searchBox = document.querySelector(".search-box");
-const searchToggle = document.querySelector(".search-toggle");
-
-searchToggle.addEventListener("click", (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-
-  searchBox.classList.toggle("search-open");
-
-  if (searchBox.classList.contains("search-open")) {
-    searchInput.focus();
-  }
-});
 searchInput.addEventListener("input", () => { searchTerm = searchInput.value.trim().toLowerCase(); currentPage = 1; render(); });
 sortSelect.addEventListener("change", () => { currentPage = 1; render(); });
 clearFilter.addEventListener("click", () => { searchInput.value = ""; searchTerm = ""; setCategory("All"); });

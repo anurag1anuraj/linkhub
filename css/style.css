@@ -11,11 +11,11 @@
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth
 }
 
 body {
@@ -23,23 +23,23 @@ body {
     background: var(--paper);
     color: var(--ink);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    line-height: 1.6;
+    line-height: 1.6
 }
 
 a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: none
 }
 
 button,
 input,
 textarea,
 select {
-    font: inherit;
+    font: inherit
 }
 
 button {
-    cursor: pointer;
+    cursor: pointer
 }
 
 .hidden {
@@ -55,7 +55,7 @@ button {
     font-weight: 800;
     letter-spacing: .16em;
     color: #70756a;
-    margin: 0 0 12px;
+    margin: 0 0 12px
 }
 
 .site-header {
@@ -76,7 +76,7 @@ button {
 }
 
 .brand span {
-    color: #7a941e;
+    color: #7a941e
 }
 
 .main-nav {
@@ -84,7 +84,7 @@ button {
     align-items: center;
     gap: 30px;
     font-size: .9rem;
-    color: #575b53;
+    color: #575b53
 }
 
 .main-nav a:hover,
@@ -96,14 +96,14 @@ button {
     display: none;
     background: transparent;
     border: 0;
-    font-size: 1.5rem;
+    font-size: 1.5rem
 }
 
 .hero {
     max-width: 1180px;
     margin: 0 auto;
     padding: 100px 24px 105px;
-    min-height: 450px;
+    min-height: 450px
 }
 
 .hero h1 {
@@ -111,18 +111,18 @@ button {
     line-height: .96;
     letter-spacing: -.085em;
     margin: 0;
-    max-width: 800px;
+    max-width: 800px
 }
 
 .hero h1 span {
-    color: #829c25;
+    color: #829c25
 }
 
 .hero-copy {
     max-width: 550px;
     font-size: 1.12rem;
     color: var(--muted);
-    margin: 28px 0 30px;
+    margin: 28px 0 30px
 }
 
 .button {
@@ -135,7 +135,7 @@ button {
     padding: 13px 20px;
     font-weight: 750;
     font-size: .9rem;
-    transition: transform .15s, background .15s;
+    transition: transform .15s, background .15s
 }
 
 .button:hover {
@@ -704,7 +704,7 @@ button {
     }
 
     .menu-toggle {
-        display: block;
+        display: block
     }
 
     .main-nav {
@@ -898,7 +898,7 @@ button {
 }
 
 .header-tools .menu-toggle {
-    display: block;;
+    display: block;
     font-size: 1.25rem;
     padding: 4px 0;
     color: #171717
@@ -1723,15 +1723,6 @@ button {
     color: #65695f
 }
 
-.search-toggle {
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    line-height: 1;
-}
-
 .admin-link {
     font-size: .74rem;
     font-weight: 700;
@@ -2349,7 +2340,7 @@ button {
     }
 
     .menu-toggle {
-        display: block;
+        display: block
     }
 
     .site-brand {
@@ -2477,19 +2468,12 @@ button {
         box-shadow: 0 5px 12px #0000000a
     }
 
-    .search-box.search-open input {
-        display: block;
-        z-index: 20;
+    .search-box:focus-within input {
+        display: block
     }
 
-    .search-box .search-toggle {
-        font-size: 1.45rem;
-        width: 35px;
-        height: 35px;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .search-box span {
+        font-size: 1.45rem
     }
 
     .admin-link {
