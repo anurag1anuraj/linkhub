@@ -58,6 +58,8 @@
               <button type="button" data-command="insertOrderedList">1. List</button>
               <button type="button" id="insert-link">Link</button>
               <button type="button" id="insert-image">Image URL</button>
+              <button type="button" id="insert-code">&lt;/&gt; Code block</button>
+              <button type="button" id="insert-table">▦ Table</button>
               <button type="button" data-command="removeFormat">Clear format</button>
             </div>
             <div id="post-content" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Start writing your article here…" aria-label="Article content"></div>
@@ -72,6 +74,14 @@
       </div>
     </section>
   </main>
+  <dialog id="code-dialog" aria-label="Insert code block" style="border:1px solid #ddd;border-radius:14px;padding:24px;width:min(560px,90vw);box-shadow:0 15px 50px #0003">
+    <form method="dialog" id="code-form" style="display:grid;gap:12px">
+      <h2 style="margin:0">Insert code block</h2>
+      <label for="code-input">Paste your code or text</label>
+      <textarea id="code-input" rows="10" spellcheck="false" style="width:100%;font-family:monospace;padding:12px;border:1px solid #ccc;border-radius:8px;resize:vertical"></textarea>
+      <div style="display:flex;justify-content:flex-end;gap:10px"><button type="button" id="cancel-code" class="small-button">Cancel</button><button type="submit" class="button button-dark">Insert code</button></div>
+    </form>
+  </dialog>
   <script type="module" src="js/admin.js"></script>
 </body>
 </html>

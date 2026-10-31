@@ -198,6 +198,78 @@ document.querySelector("#insert-image").addEventListener("click", () => {
   contentEditor.focus();
   document.execCommand("insertImage", false, url);
 });
+// Insert structured HTML at the last selection inside the article editor.
+let editorRange = null;
+function rememberEditorRange() {
+  const selection = window.getSelection();
+  if (selection.rangeCount && contentEditor.contains(selection.anchorNode)) editorRange = selection.getRangeAt(0).cloneRange();
+}
+contentEditor.addEventListener("keyup", rememberEditorRange);
+contentEditor.addEventListener("mouseup", rememberEditorRange);
+function insertEditorNode(node) {
+  contentEditor.focus();
+  const selection = window.getSelection();
+  const range = editorRange && contentEditor.contains(editorRange.commonAncestorContainer)
+    ? editorRange.cloneRange() : document.createRange();
+  if (!editorRange || !contentEditor.contains(range.commonAncestorContainer)) {
+    range.selectNodeContents(contentEditor);
+    range.collapse(false);
+  }
+  range.deleteContents();
+  range.insertNode(node);
+  const after = document.createRange();
+  after.setStartAfter(node);
+  after.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(after);
+  editorRange = after.cloneRange();
+}
+const codeDialog = document.querySelector("#code-dialog");
+document.querySelector("#insert-code").addEventListener("click", () => {
+  rememberEditorRange();
+  document.querySelector("#code-input").value = "";
+  codeDialog.showModal();
+  document.querySelector("#code-input").focus();
+});
+document.querySelector("#cancel-code").addEventListener("click", () => codeDialog.close());
+document.querySelector("#code-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const value = document.querySelector("#code-input").value;
+  if (!value.trim()) return;
+  const pre = document.createElement("pre");
+  pre.style.cssText = "background:#19232e;color:#f4f7fb;padding:18px;border-radius:10px;overflow-x:auto;white-space:pre;font-size:14px;line-height:1.6;margin:20px 0";
+  const code = document.createElement("code");
+  code.textContent = value; // textContent prevents executable HTML injection.
+  pre.appendChild(code);
+  codeDialog.close();
+  insertEditorNode(pre);
+});
+document.querySelector("#insert-table").addEventListener("click", () => {
+  rememberEditorRange();
+  const rowInput = prompt("Number of rows (including header):", "3");
+  if (rowInput === null) return;
+  const colInput = prompt("Number of columns:", "3");
+  if (colInput === null) return;
+  const rows = Number(rowInput), cols = Number(colInput);
+  if (!Number.isInteger(rows) || !Number.isInteger(cols) || rows < 1 || cols < 1 || rows > 30 || cols > 12) {
+    message(postMessage, "Enter 1–30 rows and 1–12 columns.", true);
+    return;
+  }
+  const table = document.createElement("table");
+  table.style.cssText = "border-collapse:collapse;width:100%;margin:20px 0";
+  for (let r = 0; r < rows; r++) {
+    const tr = table.insertRow();
+    for (let c = 0; c < cols; c++) {
+      const cell = document.createElement(r === 0 ? "th" : "td");
+      cell.textContent = r === 0 ? `Heading ${c + 1}` : "Edit text";
+      cell.style.cssText = "border:1px solid #cbd5e1;padding:10px 12px;text-align:left;" + (r === 0 ? "background:#f1f5f9;font-weight:700" : "");
+      tr.appendChild(cell);
+    }
+  }
+  insertEditorNode(table);
+  message(postMessage, "Table inserted. Click any cell to edit its text.");
+});
+
 document.querySelector("#preview-post").addEventListener("click", () => {
   const title = document.querySelector("#post-title").value.trim() || "Article preview";
   const excerpt = document.querySelector("#post-excerpt").value.trim();
