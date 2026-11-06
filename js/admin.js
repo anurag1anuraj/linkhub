@@ -237,7 +237,7 @@ document.querySelector("#code-form").addEventListener("submit", (event) => {
   const value = document.querySelector("#code-input").value;
   if (!value.trim()) return;
   const pre = document.createElement("pre");
-  pre.style.cssText = "background:#19232e;color:#f4f7fb;padding:18px;border-radius:10px;overflow-x:auto;white-space:pre;font-size:14px;line-height:1.6;margin:20px 0; text-wrap: auto;";
+  pre.style.cssText = "background:#19232e;color:#f4f7fb;padding:18px;border-radius:10px;overflow-x:auto;white-space:pre;font-size:14px;line-height:1.6;margin:20px 0;text-wrap:auto";
   const code = document.createElement("code");
   code.textContent = value; // textContent prevents executable HTML injection.
   pre.appendChild(code);
