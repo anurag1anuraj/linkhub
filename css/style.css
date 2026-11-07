@@ -2617,3 +2617,6 @@ button {
         height: 33px
     }
 }
+pre {
+    text-wrap: auto;
+}
