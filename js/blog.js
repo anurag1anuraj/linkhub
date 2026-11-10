@@ -87,7 +87,7 @@ if (!slug) {
         <div class="post-meta"><span class="category-tag">${escapeHtml(found.category || "Other")}</span><span>${escapeHtml(formatDate(found.createdAt))}</span></div>
         <h1>${escapeHtml(found.title)}</h1>
         ${found.excerpt ? `<p class="article-excerpt">${escapeHtml(found.excerpt)}</p>` : ""}
-      </header>${image}<article class="article-content">${safeArticleHtml(found.contentHtml || "")}</article>`;
+      </header>${image}<article class="article-content" style="background:${escapeHtml(found.contentBackground || "#ffffff")};padding:18px;border-radius:12px">${safeArticleHtml(found.contentHtml || "")}</article>`;
     }
   } catch (error) {
     console.error(error);

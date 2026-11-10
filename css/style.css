@@ -546,22 +546,56 @@ button {
 }
 
 .editor-toolbar {
+    position: sticky;
+    top: 10px;
+    z-index: 20;
     display: flex;
-    gap: 6px;
+    align-items: center;
+    gap: 7px;
     flex-wrap: wrap;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid var(--line);
-    border-bottom: 0;
-    border-radius: 10px 10px 0 0;
-    background: #f8f8f3
+    border-radius: 10px;
+    background: #f8f8f3;
+    box-shadow: 0 5px 18px #20201012;
+    max-height: 132px;
+    overflow-y: auto
+}
+
+.toolbar-color, .code-color-fields label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 7px;
+    border: 1px solid #e4e5dc;
+    border-radius: 7px;
+    background: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: nowrap
+}
+.toolbar-color input, .code-color-fields input {
+    width: 25px;
+    height: 23px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer
+}
+.code-color-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px
 }
 
 .editor-toolbar button {
+    flex: 0 0 auto;
     border: 1px solid #e4e5dc;
-    border-radius: 6px;
+    border-radius: 7px;
     background: white;
-    padding: 6px 9px;
-    font-size: .8rem
+    padding: 8px 11px;
+    font-size: .82rem;
+    cursor: pointer
 }
 
 .editor-toolbar button:hover {
@@ -569,7 +603,7 @@ button {
 }
 
 .rich-editor {
-    min-height: 300px;
+    min-height: 420px;
     border: 1px solid #dcded4;
     border-radius: 0 0 10px 10px;
     padding: 15px;
@@ -2618,3 +2652,33 @@ button {
     }
 }
 
+
+
+/* Article editor improvements */
+.rich-editor pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.rich-editor table {
+    max-width: 100%;
+}
+@media (max-width: 600px) {
+    .editor-toolbar {
+        top: 6px;
+        gap: 5px;
+        padding: 7px;
+        max-height: 150px;
+    }
+    .editor-toolbar button {
+        padding: 7px 9px;
+        font-size: .76rem;
+    }
+    .toolbar-color {
+        font-size: .7rem;
+        padding: 3px 5px;
+    }
+    .rich-editor {
+        min-height: 360px;
+        padding: 12px;
+    }
+}

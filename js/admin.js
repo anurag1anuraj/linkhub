@@ -21,6 +21,7 @@ function resetEditor() {
   postForm.reset();
   document.querySelector("#post-id").value = "";
   contentEditor.innerHTML = "";
+  contentEditor.style.backgroundColor = document.querySelector("#editor-bg-color").value;
   document.querySelector("#editor-heading").textContent = "Write an article";
   message(postMessage, "");
 }
@@ -106,6 +107,9 @@ postList.addEventListener("click", async (event) => {
     document.querySelector("#post-image").value = post.imageUrl || "";
     document.querySelector("#post-excerpt").value = post.excerpt || "";
     contentEditor.innerHTML = post.contentHtml || "";
+    const editorBg = post.contentBackground || "#ffffff";
+    document.querySelector("#editor-bg-color").value = editorBg;
+    contentEditor.style.backgroundColor = editorBg;
     document.querySelector("#editor-heading").textContent = "Edit article";
     message(postMessage, "");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -142,6 +146,7 @@ postForm.addEventListener("submit", async (event) => {
   const imageUrl = document.querySelector("#post-image").value.trim();
   const excerpt = document.querySelector("#post-excerpt").value.trim();
   const contentHtml = contentEditor.innerHTML.trim();
+  const contentBackground = document.querySelector("#editor-bg-color").value;
   const contentText = plainTextFromHtml(contentHtml);
   if (!title || !contentText) {
     message(postMessage, "Please add a title and article content.", true);
@@ -149,7 +154,7 @@ postForm.addEventListener("submit", async (event) => {
   }
   const postId = document.querySelector("#post-id").value;
   const data = {
-    title, slug: slugify(title), category, status, imageUrl, excerpt, contentHtml,
+    title, slug: slugify(title), category, status, imageUrl, excerpt, contentHtml, contentBackground,
     updatedAt: serverTimestamp()
   };
   message(postMessage, "Saving article…");
@@ -169,6 +174,43 @@ postForm.addEventListener("submit", async (event) => {
     console.error(error);
   }
 });
+
+const editorBgColor = document.querySelector("#editor-bg-color");
+const codeBgColor = document.querySelector("#code-bg-color");
+const codeTextColor = document.querySelector("#code-text-color");
+const dialogCodeBg = document.querySelector("#dialog-code-bg");
+const dialogCodeText = document.querySelector("#dialog-code-text");
+
+editorBgColor.addEventListener("input", () => {
+  contentEditor.style.backgroundColor = editorBgColor.value;
+});
+
+function selectedCodeBlock() {
+  const selection = window.getSelection();
+  const range = editorRange || (selection.rangeCount ? selection.getRangeAt(0) : null);
+  if (!range) return null;
+  let node = range.startContainer;
+  if (node && node.nodeType === Node.TEXT_NODE) node = node.parentElement;
+  const pre = node?.closest?.("pre");
+  return pre && contentEditor.contains(pre) ? pre : null;
+}
+function applyCodeColor(property, value) {
+  const pre = selectedCodeBlock();
+  if (!pre) return false;
+  pre.style[property] = value;
+  return true;
+}
+codeBgColor.addEventListener("input", () => {
+  dialogCodeBg.value = codeBgColor.value;
+  applyCodeColor("backgroundColor", codeBgColor.value);
+});
+codeTextColor.addEventListener("input", () => {
+  dialogCodeText.value = codeTextColor.value;
+  const pre = selectedCodeBlock();
+  if (pre) pre.style.color = codeTextColor.value;
+});
+dialogCodeBg.addEventListener("input", () => { codeBgColor.value = dialogCodeBg.value; });
+dialogCodeText.addEventListener("input", () => { codeTextColor.value = dialogCodeText.value; });
 
 document.querySelectorAll(".editor-toolbar [data-command]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -237,7 +279,7 @@ document.querySelector("#code-form").addEventListener("submit", (event) => {
   const value = document.querySelector("#code-input").value;
   if (!value.trim()) return;
   const pre = document.createElement("pre");
-  pre.style.cssText = "background:#19232e;color:#f4f7fb;padding:18px;border-radius:10px;overflow-x:auto;white-space:pre;font-size:14px;line-height:1.6;margin:20px 0;text-wrap:auto";
+  pre.style.cssText = `background:${dialogCodeBg.value};color:${dialogCodeText.value};padding:18px;border-radius:10px;overflow-x:auto;white-space:pre;font-size:14px;line-height:1.6;margin:20px 0;`;
   const code = document.createElement("code");
   code.textContent = value; // textContent prevents executable HTML injection.
   pre.appendChild(code);
@@ -279,7 +321,8 @@ document.querySelector("#preview-post").addEventListener("click", () => {
     message(postMessage, "Your browser blocked the preview window. Allow pop-ups and try again.", true);
     return;
   }
-  preview.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} — LinkHub preview</title><link rel="stylesheet" href="${new URL("css/style.css", location.href).href}"></head><body><main class="article-main"><p class="preview-note">Preview only — not published</p><header class="article-header"><h1>${escapeHtml(title)}</h1><p class="article-excerpt">${escapeHtml(excerpt)}</p></header><article class="article-content">${content}</article></main></body></html>`);
+  const contentBackground = document.querySelector("#editor-bg-color").value;
+  preview.document.write(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHtml(title)} — LinkHub preview</title><link rel="stylesheet" href="${new URL("css/style.css", location.href).href}"></head><body><main class="article-main"><p class="preview-note">Preview only — not published</p><header class="article-header"><h1>${escapeHtml(title)}</h1><p class="article-excerpt">${escapeHtml(excerpt)}</p></header><article class="article-content" style="background:${contentBackground};padding:18px;border-radius:12px">${content}</article></main></body></html>`);
   preview.document.close();
 });
 

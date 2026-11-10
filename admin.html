@@ -50,6 +50,9 @@
             <label>Short excerpt<textarea id="post-excerpt" rows="3" maxlength="300" placeholder="A short summary shown on the home page"></textarea></label>
             <label>Article content</label>
             <div class="editor-toolbar" role="toolbar" aria-label="Text formatting">
+              <label class="toolbar-color" title="Article content background">Editor BG <input id="editor-bg-color" type="color" value="#ffffff" aria-label="Editor background color"></label>
+              <label class="toolbar-color" title="Default code block background">Code BG <input id="code-bg-color" type="color" value="#19232e" aria-label="Code block background color"></label>
+              <label class="toolbar-color" title="Default code text color">Code Text <input id="code-text-color" type="color" value="#f4f7fb" aria-label="Code text color"></label>
               <button type="button" data-command="formatBlock" data-value="h2">Heading</button>
               <button type="button" data-command="formatBlock" data-value="h3">Subheading</button>
               <button type="button" data-command="bold"><strong>B</strong></button>
@@ -79,6 +82,10 @@
       <h2 style="margin:0">Insert code block</h2>
       <label for="code-input">Paste your code or text</label>
       <textarea id="code-input" rows="10" spellcheck="false" style="width:100%;font-family:monospace;padding:12px;border:1px solid #ccc;border-radius:8px;resize:vertical"></textarea>
+      <div class="code-color-fields">
+        <label>Block background <input id="dialog-code-bg" type="color" value="#19232e"></label>
+        <label>Text color <input id="dialog-code-text" type="color" value="#f4f7fb"></label>
+      </div>
       <div style="display:flex;justify-content:flex-end;gap:10px"><button type="button" id="cancel-code" class="small-button">Cancel</button><button type="submit" class="button button-dark">Insert code</button></div>
     </form>
   </dialog>
